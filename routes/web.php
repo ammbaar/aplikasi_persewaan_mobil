@@ -1,0 +1,50 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\MobilController;
+use App\Http\Controllers\PeminjamanMobilController;
+use App\Http\Controllers\PengembalianMobilController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+//Login
+Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+
+Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('akun/{id}', [LoginController::class, 'akun'])->name('akun')->middleware('auth');
+Route::post('akun/update', [LoginController::class, 'update_akun'])->name('update_akun')->middleware('auth');
+Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+
+//Register
+Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::post('register/action', [RegisterController::class, 'actionregister'])->name('actionregister');
+
+//Mobil
+Route::get('mobil', [MobilController::class, 'mobil'])->name('mobil')->middleware('auth');
+Route::get('mobil/tambah', [MobilController::class, 'tambah_mobil'])->name('tambah_mobil')->middleware('auth');
+Route::post('mobil/insert', [MobilController::class, 'insert_mobil'])->name('insert_mobil')->middleware('auth');
+Route::get('mobil/ubah/{id}', [MobilController::class, 'ubah_mobil'])->name('ubah_mobil')->middleware('auth');
+Route::post('mobil/update', [MobilController::class, 'update_mobil'])->name('update_mobil')->middleware('auth');
+
+//Peminjaman Mobil
+Route::get('peminjaman_mobil', [PeminjamanMobilController::class, 'peminjaman_mobil'])->name('peminjaman_mobil')->middleware('auth');
+Route::get('peminjaman_mobil/tambah', [MobilController::class, 'dropdown'])->name('tambah_peminjaman_mobil')->middleware('auth');
+Route::post('peminjaman_mobil/insert', [PeminjamanMobilController::class, 'insert_peminjaman_mobil'])->name('insert_peminjaman_mobil')->middleware('auth');
+Route::get('peminjaman_mobil/ubah/{id}', [PeminjamanMobilController::class, 'ubah_peminjaman_mobil'])->name('ubah_peminjaman_mobil')->middleware('auth');
+Route::post('peminjaman_mobil/update', [PeminjamanMobilController::class, 'update_peminjaman_mobil'])->name('update_peminjaman_mobil')->middleware('auth');
+
+//Pengembalian Mobil
+Route::get('pengembalian_mobil', [PengembalianMobilController::class, 'pengembalian_mobil'])->name('pengembalian_mobil')->middleware('auth');
