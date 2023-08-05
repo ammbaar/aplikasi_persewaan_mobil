@@ -9,8 +9,7 @@ class MobilController extends Controller
 {
     public function mobil()
     {
-        $mobil = Mobil::select('*')
-                ->get();
+        $mobil = Mobil::all();
 
         return view('mobil', ['mobil' => $mobil]);
     }
@@ -22,7 +21,7 @@ class MobilController extends Controller
 
     public function insert_mobil(Request $request)
     {
-        $mobil = Mobil::create([
+        Mobil::create([
             'merk' => $request->merk,
             'model' => $request->model,
             'no_plat' => $request->no_plat,
@@ -30,37 +29,32 @@ class MobilController extends Controller
             'status' => 'Tersedia'
         ]);
 
-        return redirect()->route('mobil');
+        return redirect('/mobil');
     }
 
     public function ubah_mobil($id)
     {
-        $mobil = Mobil::select('*')
-                ->where('id', $id)
-                ->get();
+        $mobil = Mobil::find($id);
 
         return view('ubah_mobil', ['mobil' => $mobil]);
     }
 
-    public function update_mobil(Request $request)
+    public function update_mobil($id, Request $request)
     {
-        $mobil = Mobil::where('id', $request->id)
-                ->update([
-                    'merk' => $request->merk,
-                    'model' => $request->model,
-                    'no_plat' => $request->no_plat,
-                    'tarif' => $request->tarif
-                ]);
+        $mobil = Mobil::find($id);
+        $mobil->merk = $request->merk;
+        $mobil->model = $request->model;
+        $mobil->no_plat = $request->no_plat;
+        $mobil->tarif = $request->tarif;
+        $mobil->save();
 
-        return redirect()->route('mobil');
+        return redirect('/mobil');
     }
 
     public function dropdown()
     {
         $mobil = Mobil::pluck('no_plat', 'id');
 
-        return view('tambah_peminjaman_mobil', [
-            'mobil' => $mobil,
-        ]);
+        return view('tambah_peminjaman_mobil', ['mobil' => $mobil]);
     }
 }

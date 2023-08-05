@@ -4,7 +4,7 @@
 
   <h3>Data Mobil</h3>
   <br>
-  <a class="btn btn-success" href="{{route('tambah_mobil')}}"><i class="fa fa-plus"></i> Tambah Mobil</a><br><br>
+  <a class="btn btn-success" href="/mobil/tambah"><i class="fa fa-plus"></i> Tambah Mobil</a><br><br>
   <table class="table table-bordered table-hover">
     <tr>
       <th>ID</th>

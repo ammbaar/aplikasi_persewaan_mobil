@@ -16,7 +16,7 @@ class RegisterController extends Controller
     
     public function actionregister(Request $request)
     {
-        $user = User::create([
+        User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'nama' => $request->nama,
@@ -25,7 +25,7 @@ class RegisterController extends Controller
             'no_sim' => $request->no_sim
         ]);
 
-        Session::flash('message', 'Register Berhasil. Akun Anda sudah aktif, silakan Login menggunakan username dan password.');
-        return redirect('register');
+        Session::flash('message', 'Register berhasil. Akun Anda sudah aktif, silakan login menggunakan username dan password.');
+        return redirect('/register');
     }
 }

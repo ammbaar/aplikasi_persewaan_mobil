@@ -12,7 +12,7 @@ class LoginController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect('home');
+            return redirect('/home');
         }else{
             return view('login');
         }
@@ -26,7 +26,7 @@ class LoginController extends Controller
         ];
 
         if (Auth::Attempt($data)) {
-            return redirect('home');
+            return redirect('/home');
         }else{
             Session::flash('error', 'Username atau Password salah');
             return redirect('/');
@@ -41,27 +41,23 @@ class LoginController extends Controller
 
     public function akun($id)
     {
-        $akun = User::select('*')
-                ->where('id', $id)
-                ->get();
+        $akun = User::find($id);
 
         return view('akun', ['akun' => $akun]);
     }
 
-    public function update_akun(Request $request)
+    public function update_akun($id, Request $request)
     {
-        $akun = User::where('id', $request->id)
-                ->update([
-                    'nama' => $request->nama,
-                    'alamat' => $request->alamat,
-                    'no_telp' => $request->no_telp,
-                    'no_sim' => $request->no_sim
-                ]);
+        $akun = User::find($id);
+        $akun->nama = $request->nama;
+        $akun->alamat = $request->alamat;
+        $akun->no_telp = $request->no_telp;
+        $akun->no_sim = $request->no_sim;
+        $akun->save();
 
-        $data = User::select('*')
-                ->where('id', $request->id)
-                ->get();
+        $data = User::find($id);
 
+        Session::flash('message', 'Update data berhasil');
         return view('akun', ['akun' => $data]);
     }
 }

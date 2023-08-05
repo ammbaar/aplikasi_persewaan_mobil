@@ -4,7 +4,7 @@
 
   <h3>Data Peminjaman Mobil</h3>
   <br>
-  <a class="btn btn-success" href="{{route('tambah_peminjaman_mobil')}}"><i class="fa fa-plus"></i> Tambah Peminjaman Mobil</a><br><br>
+  <a class="btn btn-success" href="/peminjaman_mobil/tambah"><i class="fa fa-plus"></i> Tambah Peminjaman Mobil</a><br><br>
   <table class="table table-bordered table-hover">
     <tr>
       <th>ID</th>
