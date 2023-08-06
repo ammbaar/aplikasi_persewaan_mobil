@@ -18,7 +18,7 @@
                 <b>Opps!</b> {{session('error')}}
             </div>
             @endif
-            <form action="{{ route('actionlogin') }}" method="post">
+            <form method="post" action="/actionlogin" autocomplete="off">
             @csrf
                 <div class="form-group">
                     <label>Username</label>
@@ -30,7 +30,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in"></i> Log In</button>
                 <hr>
-                <p class="text-center">Belum punya akun? <a href="{{ route('register') }}">Register</a> sekarang!</p>
+                <p class="text-center">Belum punya akun? <a href="/register">Register</a> sekarang!</p>
             </form>
         </div>
     </div>

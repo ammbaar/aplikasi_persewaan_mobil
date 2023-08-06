@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PeminjamanMobil;
+use App\Models\Mobil;
 
 class PeminjamanMobilController extends Controller
 {
@@ -26,7 +27,9 @@ class PeminjamanMobilController extends Controller
 
     public function tambah_peminjaman_mobil()
     {
-        return view('tambah_peminjaman_mobil');
+        $list = Mobil::pluck('no_plat', 'id');
+
+        return view('tambah_peminjaman_mobil', ['list' => $list]);
     }
 
     public function insert_peminjaman_mobil(Request $request)
@@ -45,8 +48,9 @@ class PeminjamanMobilController extends Controller
     public function ubah_peminjaman_mobil($id)
     {
         $mobil = PeminjamanMobil::find($id);
+        $list = Mobil::pluck('no_plat', 'id');
 
-        return view('ubah_peminjaman_mobil', ['peminjaman_mobil' => $mobil]);
+        return view('ubah_peminjaman_mobil', ['peminjaman_mobil' => $mobil, 'list' => $list]);
     }
 
     public function update_peminjaman_mobil($id, Request $request)

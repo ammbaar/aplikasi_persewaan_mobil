@@ -4,13 +4,18 @@
 
   <h3>Ubah Data Peminjaman Mobil</h3>
   <br>
-  <form method="post" action="/peminjaman_mobil/update/{{ $peminjaman_mobil->id }}">
+  <form method="post" action="/peminjaman_mobil/update/{{ $peminjaman_mobil->id }}" autocomplete="off">
     @csrf
     {{ method_field('PUT') }}
     <input type="hidden" name="id_user" value="{{$peminjaman_mobil->id_user}}">
     <div class="form-group">
-      <label>ID Mobil</label>
-      <input type="text" name="id_mobil" value="{{$peminjaman_mobil->id_mobil}}" class="form-control" placeholder="ID Mobil" required="">
+      <label>Nomor Plat Mobil</label>
+      <select name="id_mobil" class="form-control" required="">
+        <option value="">-- Pilih Nomor Plat --</option>
+        @foreach($list as $id => $no_plat)
+          <option value="{{ $id }}" {{ $id == $peminjaman_mobil->id_mobil ? 'selected' : '' }}>{{ $no_plat }}</option>
+        @endforeach
+      </select>
     </div>
     <div class="form-group">
       <label>Tanggal Mulai</label>

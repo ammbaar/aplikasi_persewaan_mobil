@@ -50,11 +50,4 @@ class MobilController extends Controller
 
         return redirect('/mobil');
     }
-
-    public function dropdown()
-    {
-        $mobil = Mobil::pluck('no_plat', 'id');
-
-        return view('tambah_peminjaman_mobil', ['mobil' => $mobil]);
-    }
 }

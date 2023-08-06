@@ -22,20 +22,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{{route('home')}}"><i class="fa fa-home"></i> Aplikasi Persewaan Mobil</a>
+              <a class="navbar-brand" href="/home"><i class="fa fa-home"></i> Aplikasi Persewaan Mobil</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav">
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="{{route('mobil')}}"><i class="fa fa-table"></i> Data Mobil</a>
+                  <a class="nav-link" href="/mobil"><i class="fa fa-table"></i> Data Mobil</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="{{route('peminjaman_mobil')}}"><i class="fa fa-table"></i> Peminjaman Mobil</a>
+                  <a class="nav-link" href="/peminjaman_mobil"><i class="fa fa-table"></i> Peminjaman Mobil</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="{{route('pengembalian_mobil')}}"><i class="fa fa-table"></i> Pengembalian Mobil</a>
+                  <a class="nav-link" href="/pengembalian_mobil"><i class="fa fa-table"></i> Pengembalian Mobil</a>
                 </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -46,7 +46,7 @@
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="/akun/{{Auth::user()->id}}"><i class="fa fa-user"></i> Akun</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a class="dropdown-item" href="{{route('actionlogout')}}"><i class="fa fa-sign-out-alt"></i> Log Out</a></li>
+                    <li><a class="dropdown-item" href="/actionlogout"><i class="fa fa-sign-out-alt"></i> Log Out</a></li>
                   </ul>
                 </li>
               </ul>

@@ -4,14 +4,14 @@
 
   <h3>Form Input Peminjaman Mobil</h3>
   <br>
-  <form method="post" action="/peminjaman_mobil/insert">
+  <form method="post" action="/peminjaman_mobil/insert" autocomplete="off">
     @csrf
     <div class="form-group">
       <label>Nomor Plat Mobil</label>
       <input type="hidden" name="id_user" value="{{Auth::user()->id}}">
       <select name="id_mobil" class="form-control" required="">
         <option value="">-- Pilih Nomor Plat --</option>
-        @foreach ($mobil as $id => $no_plat)
+        @foreach ($list as $id => $no_plat)
           <option value="{{ $id }}">{{ $no_plat }}</option>
         @endforeach
       </select>

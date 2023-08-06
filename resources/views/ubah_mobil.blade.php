@@ -4,7 +4,7 @@
 
   <h3>Ubah Data Mobil</h3>
   <br>
-  <form method="post" action="/mobil/update/{{ $mobil->id }}">
+  <form method="post" action="/mobil/update/{{ $mobil->id }}" autocomplete="off">
     @csrf
     {{ method_field('PUT') }}
     <div class="form-group">

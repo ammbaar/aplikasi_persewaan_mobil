@@ -18,7 +18,7 @@
                 {{session('message')}}
             </div>
             @endif
-            <form action="{{route('actionregister')}}" method="post">
+            <form method="post" action="/register/action" autocomplete="off">
             @csrf
                 <div class="form-group">
                     <label>Username</label>
@@ -46,7 +46,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Register</button>
                 <hr>
-                <p class="text-center">Sudah punya akun? Silakan <a href="{{ route('login') }}">Login di sini!</a></p>
+                <p class="text-center">Sudah punya akun? Silakan <a href="/">Login di sini!</a></p>
             </form>
         </div>
     </div>

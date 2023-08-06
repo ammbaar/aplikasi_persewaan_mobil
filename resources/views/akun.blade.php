@@ -9,7 +9,7 @@
     {{session('message')}}
   </div>
   @endif
-  <form method="post" action="/akun/update/{{ $akun->id }}">
+  <form method="post" action="/akun/update/{{ $akun->id }}" autocomplete="off">
     @csrf
     {{ method_field('PUT') }}
     <div class="form-group">

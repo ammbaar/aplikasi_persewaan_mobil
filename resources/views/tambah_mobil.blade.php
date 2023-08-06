@@ -4,7 +4,7 @@
 
   <h3>Form Input Mobil</h3>
   <br>
-  <form method="post" action="/mobil/insert">
+  <form method="post" action="/mobil/insert" autocomplete="off">
     @csrf
     <div class="form-group">
       <label>Merk</label>
