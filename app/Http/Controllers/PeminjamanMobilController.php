@@ -27,7 +27,7 @@ class PeminjamanMobilController extends Controller
 
     public function tambah_peminjaman_mobil()
     {
-        $list = Mobil::pluck('no_plat', 'id');
+        $list = Mobil::where('status', 'Tersedia')->pluck('no_plat', 'id');
 
         return view('tambah_peminjaman_mobil', ['list' => $list]);
     }
@@ -42,25 +42,37 @@ class PeminjamanMobilController extends Controller
             'status' => 'Sewa'
         ]);
 
+        $mobil = Mobil::find($request->id_mobil);
+        $mobil->status = 'Disewa';
+        $mobil->save();
+
         return redirect('/peminjaman_mobil');
     }
 
     public function ubah_peminjaman_mobil($id)
     {
-        $mobil = PeminjamanMobil::find($id);
-        $list = Mobil::pluck('no_plat', 'id');
+        $pinjam = PeminjamanMobil::find($id);
+        $list = Mobil::where('status', 'Tersedia')->orWhere('id', $pinjam->id_mobil)->pluck('no_plat', 'id');
 
-        return view('ubah_peminjaman_mobil', ['peminjaman_mobil' => $mobil, 'list' => $list]);
+        return view('ubah_peminjaman_mobil', ['peminjaman_mobil' => $pinjam, 'list' => $list]);
     }
 
     public function update_peminjaman_mobil($id, Request $request)
     {
-        $mobil = PeminjamanMobil::find($id);
-        $mobil->id_user = $request->id_user;
-        $mobil->id_mobil = $request->id_mobil;
-        $mobil->tanggal_mulai = $request->tanggal_mulai;
-        $mobil->tanggal_selesai = $request->tanggal_selesai;
-        $mobil->status = 'Sewa';
+        $pinjam = PeminjamanMobil::find($id);
+        $mobil_awal = Mobil::find($pinjam->id_mobil);
+        $mobil_awal->status = 'Tersedia';
+        $mobil_awal->save();
+
+        $pinjam->id_user = $request->id_user;
+        $pinjam->id_mobil = $request->id_mobil;
+        $pinjam->tanggal_mulai = $request->tanggal_mulai;
+        $pinjam->tanggal_selesai = $request->tanggal_selesai;
+        $pinjam->status = 'Sewa';
+        $pinjam->save();
+
+        $mobil = Mobil::find($request->id_mobil);
+        $mobil->status = 'Disewa';
         $mobil->save();
 
         return redirect('/peminjaman_mobil');
