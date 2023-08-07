@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PeminjamanMobil;
 use App\Models\Mobil;
+use DateTime;
 
 class PeminjamanMobilController extends Controller
 {
@@ -34,11 +35,24 @@ class PeminjamanMobilController extends Controller
 
     public function insert_peminjaman_mobil(Request $request)
     {
+        $tanggal_mulai = $request->tanggal_mulai;
+        $tanggal_selesai = $request->tanggal_selesai;
+        $first_datetime = new DateTime($tanggal_mulai);
+        $last_datetime = new DateTime($tanggal_selesai);
+        $interval = $first_datetime->diff($last_datetime);
+        $durasi = $interval->format('%a');
+
+        $tarif = Mobil::find($request->id_mobil);
+        $nominal = $tarif->tarif;
+        $biaya = $nominal*$durasi;
+
         PeminjamanMobil::create([
             'id_user' => $request->id_user,
             'id_mobil' => $request->id_mobil,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
+            'durasi' => $durasi,
+            'biaya' => $biaya,
             'status' => 'Sewa'
         ]);
 
@@ -64,10 +78,23 @@ class PeminjamanMobilController extends Controller
         $mobil_awal->status = 'Tersedia';
         $mobil_awal->save();
 
+        $tanggal_mulai = $request->tanggal_mulai;
+        $tanggal_selesai = $request->tanggal_selesai;
+        $first_datetime = new DateTime($tanggal_mulai);
+        $last_datetime = new DateTime($tanggal_selesai);
+        $interval = $first_datetime->diff($last_datetime);
+        $durasi = $interval->format('%a');
+
+        $tarif = Mobil::find($request->id_mobil);
+        $nominal = $tarif->tarif;
+        $biaya = $nominal*$durasi;
+
         $pinjam->id_user = $request->id_user;
         $pinjam->id_mobil = $request->id_mobil;
         $pinjam->tanggal_mulai = $request->tanggal_mulai;
         $pinjam->tanggal_selesai = $request->tanggal_selesai;
+        $pinjam->durasi = $durasi;
+        $pinjam->biaya = $biaya;
         $pinjam->status = 'Sewa';
         $pinjam->save();
 

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('id_mobil')->unsigned();
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
+            $table->integer('durasi')->unsigned();
+            $table->integer('biaya')->unsigned();
             $table->string('status', 20);
             $table->timestamps();
         });

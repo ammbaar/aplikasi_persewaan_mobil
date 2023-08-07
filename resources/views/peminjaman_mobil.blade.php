@@ -23,7 +23,14 @@
       <td>{{$m->tanggal_mulai}}</td>
       <td>{{$m->tanggal_selesai}}</td>
       <td>{{$m->status}}</td>
-      <td><a href="/peminjaman_mobil/ubah/{{$m->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a></td>
+      <td>
+        <a href="/peminjaman_mobil/ubah/{{$m->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+        @if($m->status == 'Sewa')
+          <a href="/pengembalian_mobil/form/{{$m->id}}" class="btn btn-info btn-sm"><i class="fa fa-undo"></i> Pengembalian</a>
+        @else
+          <a class="btn btn-info btn-sm" disabled><i class="fa fa-undo"></i> Pengembalian</a>
+        @endif
+      </td>
     </tr>
     @endforeach
   </table>

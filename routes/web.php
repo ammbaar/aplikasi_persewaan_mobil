@@ -51,4 +51,6 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
     //Pengembalian Mobil
     Route::get('pengembalian_mobil', [PengembalianMobilController::class, 'pengembalian_mobil'])->name('pengembalian_mobil')->middleware('auth');
+    Route::get('pengembalian_mobil/form/{id}', [PengembalianMobilController::class, 'form_pengembalian_mobil'])->name('form_pengembalian_mobil')->middleware('auth');
+    Route::put('pengembalian_mobil/update/{id}', [PengembalianMobilController::class, 'update_pengembalian_mobil'])->name('update_pengembalian_mobil')->middleware('auth');
 });

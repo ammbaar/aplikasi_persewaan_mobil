@@ -11,5 +11,5 @@ class PeminjamanMobil extends Model
 
     protected $table = 'peminjaman_mobil';
     protected $primaryKey = 'id';
-    protected $fillable = ['id_user', 'id_mobil', 'tanggal_mulai', 'tanggal_selesai', 'status'];
+    protected $fillable = ['id_user', 'id_mobil', 'tanggal_mulai', 'tanggal_selesai', 'durasi', 'biaya', 'status'];
 }

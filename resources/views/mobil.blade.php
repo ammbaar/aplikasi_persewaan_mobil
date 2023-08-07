@@ -23,7 +23,7 @@
       <td>{{$m->no_plat}}</td>
       <td>{{$m->tarif}}</td>
       <td>{{$m->status}}</td>
-      <td><a href="/mobil/ubah/{{$m->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a></td>
+      <td><a href="/mobil/ubah/{{$m->id}}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i> Edit</a></td>
     </tr>
     @endforeach
   </table>

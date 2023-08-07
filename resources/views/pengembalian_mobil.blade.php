@@ -1,16 +1,26 @@
 @extends('master')
 
 @section('konten')
-  <!-- <center><h4>Selamat Datang <b>{{Auth::user()->nama}}</b></h4><center> -->
 
-  <div class="container-fluid mb-5">
-    <div class="content">
-      <div class="row">
-        <div class="col-lg-12" style="text-align:center; padding-top:230px;">
-          <h3><b>Pengembalian Mobil</b></h3>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h3>Data Pengembalian Mobil</h3>
+  <br>
+  <table class="table table-bordered table-hover">
+    <tr>
+      <th>ID</th>
+      <th>Pengguna</th>
+      <th>Plat Mobil</th>
+      <th>Durasi Sewa (Hari)</th>
+      <th>Jumlah Biaya Sewa</th>
+    </tr>
+    @foreach($pengembalian_mobil as $m) 
+    <tr>
+      <td>{{$m->id}}</td>
+      <td>{{$m->nama}}</td>
+      <td>{{$m->no_plat}}</td>
+      <td>{{$m->durasi}}</td>
+      <td>{{$m->biaya}}</td>
+    </tr>
+    @endforeach
+  </table>
 
 @endsection
